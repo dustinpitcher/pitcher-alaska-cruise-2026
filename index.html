@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pitcher Family Alaska Cruise 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #0a1628; --card: #111d33; --card-hover: #162340;
+    --accent: #3b82f6; --accent2: #06b6d4; --accent3: #f59e0b;
+    --text: #e2e8f0; --muted: #94a3b8; --border: #1e293b;
+    --success: #10b981; --warm: #f97316;
+  }
+  body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+  
+  /* Hero */
+  .hero {
+    background: linear-gradient(135deg, #0c1929 0%, #1a365d 50%, #0c1929 100%);
+    padding: 3rem 2rem; text-align: center; position: relative; overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%233b82f6' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 0.5rem; position: relative; }
+  .hero h1 span { background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .hero .subtitle { color: var(--muted); font-size: 1.1rem; position: relative; }
+  .hero .dates { display: inline-block; background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.3); padding: 0.5rem 1.5rem; border-radius: 999px; margin-top: 1rem; font-weight: 600; font-size: 0.95rem; position: relative; color: var(--accent); }
+
+  /* Nav tabs */
+  .nav { display: flex; gap: 0.5rem; padding: 1rem 2rem; background: var(--card); border-bottom: 1px solid var(--border); overflow-x: auto; position: sticky; top: 0; z-index: 100; }
+  .nav button {
+    padding: 0.6rem 1.2rem; border: 1px solid var(--border); border-radius: 8px; background: transparent;
+    color: var(--muted); font-size: 0.85rem; font-weight: 500; cursor: pointer; white-space: nowrap; transition: all 0.2s;
+    font-family: 'Inter', sans-serif;
+  }
+  .nav button:hover { border-color: var(--accent); color: var(--text); }
+  .nav button.active { background: var(--accent); border-color: var(--accent); color: white; }
+
+  /* Main content */
+  .main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; animation: fadeIn 0.3s; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* Cards */
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; transition: all 0.2s; }
+  .card:hover { border-color: var(--accent); background: var(--card-hover); }
+  .card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+  .card p, .card li { color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
+  .card ul { list-style: none; padding: 0; }
+  .card li { padding: 0.3rem 0; }
+  .card li::before { content: '›'; color: var(--accent); margin-right: 0.5rem; font-weight: 700; }
+
+  /* Tags */
+  .tag { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 999px; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+  .tag-top { background: rgba(245,158,11,0.15); color: var(--accent3); }
+  .tag-kids { background: rgba(16,185,129,0.15); color: var(--success); }
+  .tag-adventure { background: rgba(249,115,22,0.15); color: var(--warm); }
+  .tag-culture { background: rgba(59,130,246,0.15); color: var(--accent); }
+  .tag-value { background: rgba(6,182,212,0.15); color: var(--accent2); }
+
+  /* Timeline */
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: var(--border); }
+  .timeline-item { position: relative; padding-bottom: 1.5rem; }
+  .timeline-item::before {
+    content: ''; position: absolute; left: -1.55rem; top: 6px; width: 12px; height: 12px;
+    border-radius: 50%; background: var(--accent); border: 2px solid var(--bg);
+  }
+  .timeline-item.completed::before { background: var(--success); }
+  .timeline-date { font-size: 0.75rem; color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+  .timeline-title { font-weight: 600; margin: 0.2rem 0; }
+  .timeline-desc { color: var(--muted); font-size: 0.85rem; }
+
+  /* Grid */
+  .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1rem; }
+  .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+
+  /* Stat boxes */
+  .stat { text-align: center; padding: 1.5rem; }
+  .stat .number { font-size: 2rem; font-weight: 700; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .stat .label { color: var(--muted); font-size: 0.8rem; margin-top: 0.3rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  /* Excursion cards */
+  .excursion { border-left: 3px solid var(--border); }
+  .excursion.pick { border-left-color: var(--accent3); }
+  .excursion .price { color: var(--success); font-weight: 600; }
+  .excursion .duration { color: var(--muted); font-size: 0.8rem; }
+
+  /* Checklist */
+  .checklist { list-style: none; padding: 0; }
+  .checklist li { padding: 0.5rem 0; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 0.7rem; font-size: 0.9rem; cursor: pointer; }
+  .checklist li::before { content: '☐'; color: var(--accent); font-size: 1.1rem; }
+  .checklist li.checked::before { content: '☑'; color: var(--success); }
+  .checklist li.checked { color: var(--muted); text-decoration: line-through; }
+
+  /* Packing category */
+  .pack-cat { margin-bottom: 1.5rem; }
+  .pack-cat h4 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); margin-bottom: 0.5rem; padding-bottom: 0.3rem; border-bottom: 1px solid var(--border); }
+
+  /* Section headers */
+  .section-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 1.5rem; }
+
+  /* Flight card */
+  .flight-segment { display: flex; align-items: center; gap: 1rem; padding: 1rem; background: rgba(59,130,246,0.05); border-radius: 8px; margin-bottom: 0.5rem; }
+  .flight-segment .code { font-weight: 700; font-size: 1.1rem; color: var(--accent); min-width: 3rem; }
+  .flight-segment .route { flex: 1; }
+  .flight-segment .route .cities { font-weight: 600; }
+  .flight-segment .route .detail { color: var(--muted); font-size: 0.8rem; }
+  .flight-arrow { color: var(--accent); font-size: 1.2rem; }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 1.8rem; }
+    .nav { padding: 0.7rem 1rem; }
+    .main { padding: 1rem; }
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  }
+
+  /* Print styles */
+  @media print {
+    .nav { display: none; }
+    .tab-content { display: block !important; page-break-inside: avoid; }
+    body { background: white; color: black; }
+    .card { border: 1px solid #ddd; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>🏔️ <span>Alaska Cruise Adventure</span> 2026</h1>
+  <p class="subtitle">Pitcher Family — Denali Explorer Tour DB4</p>
+  <div class="dates">June 23 — July 5, 2026</div>
+</div>
+
+<nav class="nav" id="nav">
+  <button class="active" onclick="showTab('overview')">Overview</button>
+  <button onclick="showTab('itinerary')">Day-by-Day</button>
+  <button onclick="showTab('flights')">Flights</button>
+  <button onclick="showTab('excursions')">Excursions</button>
+  <button onclick="showTab('packing')">Packing</button>
+  <button onclick="showTab('docs')">Documents</button>
+</nav>
+
+<div class="main">
+
+  <!-- OVERVIEW -->
+  <div class="tab-content active" id="tab-overview">
+    <h2 class="section-title">Trip Overview</h2>
+    <div class="grid-3">
+      <div class="card stat"><div class="number">11</div><div class="label">Nights</div></div>
+      <div class="card stat"><div class="number">4</div><div class="label">Travelers</div></div>
+      <div class="card stat"><div class="number">5</div><div class="label">Destinations</div></div>
+      <div class="card stat"><div class="number">B525</div><div class="label">Mini-Suite</div></div>
+      <div class="card stat"><div class="number">3</div><div class="label">Port Days</div></div>
+      <div class="card stat"><div class="number">$14,832</div><div class="label">Total Cruise</div></div>
+    </div>
+
+    <div class="grid-2" style="margin-top:1.5rem">
+      <div class="card">
+        <h3>🚢 Cruise Details</h3>
+        <ul>
+          <li><strong>Ship:</strong> Discovery Princess</li>
+          <li><strong>Cruise Number:</strong> 1251779</li>
+          <li><strong>Route:</strong> Anchorage → Vancouver (Southbound)</li>
+          <li><strong>Cabin:</strong> Mini-Suite B525, Baja Deck</li>
+          <li><strong>Dining:</strong> Anytime Dining</li>
+          <li><strong>Reservation:</strong> DM6D8R</li>
+          <li><strong>Booked via:</strong> Amex Travel</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>👨‍👩‍👧‍👦 Travelers</h3>
+        <ul>
+          <li><strong>Dustin Pitcher</strong> (Age 40)</li>
+          <li><strong>Katie Pitcher</strong> (Age 44)</li>
+          <li><strong>Dharma Pitcher</strong> (Age 12)</li>
+          <li><strong>Jameson Pitcher</strong> (Age 10)</li>
+        </ul>
+        <p style="margin-top:0.7rem; font-size:0.85rem;">All guest details, citizenship, and contact info confirmed with Princess via Amex.</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:1rem">
+      <h3>💰 Financial Summary</h3>
+      <div class="grid-3">
+        <div><p style="color:var(--muted);font-size:0.8rem">Cruise Fare</p><strong>$14,524.44</strong></div>
+        <div><p style="color:var(--muted);font-size:0.8rem">Taxes & Fees</p><strong>$627.56</strong></div>
+        <div><p style="color:var(--muted);font-size:0.8rem">Travel Insurance</p><strong>$915.94</strong></div>
+        <div><p style="color:var(--muted);font-size:0.8rem">Subtotal</p><strong>$16,067.94</strong></div>
+        <div><p style="color:var(--muted);font-size:0.8rem">Amex Points (176,529)</p><strong style="color:var(--success)">–$1,235.70</strong></div>
+        <div><p style="color:var(--muted);font-size:0.8rem">Charged to Card</p><strong style="color:var(--accent);font-size:1.2rem">$14,832.24</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ITINERARY -->
+  <div class="tab-content" id="tab-itinerary">
+    <h2 class="section-title">Day-by-Day Itinerary</h2>
+    <div class="grid-2">
+      <div>
+        <h3 style="margin-bottom:1rem;color:var(--accent3)">🏠 Land Tour (Anchorage + Denali)</h3>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-date">June 23 — Day 1</div>
+            <div class="timeline-title">Arrive Anchorage</div>
+            <div class="timeline-desc">Flight BFL→ANC (1:53 PM). Hotel Captain Cook. Settle in, dinner.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">June 24 — Day 2</div>
+            <div class="timeline-title">Anchorage → Denali</div>
+            <div class="timeline-desc">Travel to Denali Princess Wilderness Lodge. Evening at lodge.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">June 25 — Day 3</div>
+            <div class="timeline-title">Denali National Park</div>
+            <div class="timeline-desc">Park tour, wildlife viewing, trails. Junior Ranger program for kids!</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">June 26 — Day 4</div>
+            <div class="timeline-title">Denali National Park</div>
+            <div class="timeline-desc">Second full day in Denali. Optional excursions, fire pit roasting.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">June 27 — Day 5</div>
+            <div class="timeline-title">Denali → Ship Boarding</div>
+            <div class="timeline-desc">Travel from Denali to ship. Board Discovery Princess! Welcome aboard!</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3 style="margin-bottom:1rem;color:var(--accent2)">🚢 Cruise (Glaciers + Ports)</h3>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-date">June 28 — Day 6</div>
+            <div class="timeline-title">Hubbard Glacier 🧊</div>
+            <div class="timeline-desc">Full-day glacier cruising. Massive tidewater glacier views. Best from the Lido Deck.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">June 29 — Day 7</div>
+            <div class="timeline-title">Glacier Bay 🐻</div>
+            <div class="timeline-desc">National Park cruise. Wildlife (bears, whales, eagles). Naturalist on board.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">June 30 — Day 8</div>
+            <div class="timeline-title">Icy Strait Point 🎢</div>
+            <div class="timeline-desc">Port day. ZipRider, salmon hatchery, rainforest trails.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">July 1 — Day 9</div>
+            <div class="timeline-title">Juneau 🐋</div>
+            <div class="timeline-desc">Alaska capital. Whale watching, Mendenhall Glacier, tramway.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">July 2 — Day 10</div>
+            <div class="timeline-title">Ketchikan 🏛️</div>
+            <div class="timeline-desc">Town of Adventures. Totem parks, rainforest walks, Creek Street.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">July 3 — Day 11</div>
+            <div class="timeline-title">At Sea 🌊</div>
+            <div class="timeline-desc">Last sea day! Ship amenities: pools, arcade, Camp Discovery, spa, shows.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">July 4 — Day 12</div>
+            <div class="timeline-title">Vancouver Disembarkation 🇨🇦</div>
+            <div class="timeline-desc">Independence Day! Morning disembark. Hotel near YVR.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">July 5</div>
+            <div class="timeline-title">Fly Home ✈️</div>
+            <div class="timeline-desc">YVR→SFO→BFL (7:00 AM departure). Home by noon!</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLIGHTS -->
+  <div class="tab-content" id="tab-flights">
+    <h2 class="section-title">Flight Details</h2>
+    <div class="grid-2">
+      <div class="card">
+        <h3>✈️ Outbound — June 23, 2026</h3>
+        <p style="margin-bottom:0.5rem"><strong>BFL → ANC</strong> via SFO | United Airlines</p>
+        <p style="color:var(--muted);font-size:0.8rem;margin-bottom:1rem">Amex Conf: 7469-3408 | United Conf: BKXWYE</p>
+        
+        <div class="flight-segment">
+          <div class="code">UA<br>5625</div>
+          <div class="route">
+            <div class="cities">Bakersfield → San Francisco</div>
+            <div class="detail">Embraer 175 | 1:53 PM – 3:09 PM | Row 23 A-D</div>
+          </div>
+        </div>
+        <div style="padding:0.3rem 0 0.8rem 0;text-align:center;color:var(--muted)">~3.5 hour layover at SFO</div>
+        <div class="flight-segment">
+          <div class="code">UA<br>1594</div>
+          <div class="route">
+            <div class="cities">San Francisco → Anchorage</div>
+            <div class="detail">Boeing 737 MAX 8 | 6:47 PM – 10:46 PM | Row 37 A-D</div>
+          </div>
+        </div>
+        <p style="margin-top:0.7rem;font-size:0.85rem;color:var(--success)">✅ Arrive ANC 10:46 PM → Princess transfers to Hotel Captain Cook</p>
+      </div>
+
+      <div class="card">
+        <h3>✈️ Return — July 5, 2026</h3>
+        <p style="margin-bottom:0.5rem"><strong>YVR → BFL</strong> via SFO | United Airlines</p>
+        <p style="color:var(--muted);font-size:0.8rem;margin-bottom:1rem">Early morning — be at YVR by 5:30 AM</p>
+        
+        <div class="flight-segment">
+          <div class="code">UA<br>2322</div>
+          <div class="route">
+            <div class="cities">Vancouver → San Francisco</div>
+            <div class="detail">Boeing 737-900 | 7:00 AM – 9:25 AM | Row 36 A-D</div>
+          </div>
+        </div>
+        <div style="padding:0.3rem 0 0.8rem 0;text-align:center;color:var(--muted)">1 hour layover at SFO</div>
+        <div class="flight-segment">
+          <div class="code">UA<br>4671</div>
+          <div class="route">
+            <div class="cities">San Francisco → Bakersfield</div>
+            <div class="detail">Embraer 175 | 10:25 AM – 11:51 AM | Row 22 A-D</div>
+          </div>
+        </div>
+        <p style="margin-top:0.7rem;font-size:0.85rem;color:var(--success)">✅ Home by noon! 12 days before July 17 birthday</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:1rem">
+      <h3>⚠️ Important Notes</h3>
+      <ul>
+        <li><strong>Return flight logistics:</strong> Ship disembarks Vancouver morning July 4. You'll need a hotel near YVR for July 4 night to catch the 7 AM flight July 5.</li>
+        <li><strong>Passports required:</strong> Valid US passports for all travelers (Canada entry at Vancouver).</li>
+        <li><strong>Checked bags:</strong> Princess handles luggage from ANC→ship→YVR. Just carry what you need for Vancouver hotel.</li>
+        <li><strong>Seats confirmed:</strong> All 4 seats (A-D) assigned on every segment.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- EXCURSIONS -->
+  <div class="tab-content" id="tab-excursions">
+    <h2 class="section-title">Shore Excursion Options</h2>
+    <p style="color:var(--muted);margin-bottom:1.5rem">Pick one per port day. Family favorites are tagged. Prices are estimated per person through Princess.</p>
+
+    <!-- Icy Strait Point -->
+    <div class="card" style="border-left:3px solid var(--accent3)">
+      <h3>🎢 Icy Strait Point — June 30</h3>
+      <div class="grid-2" style="margin-top:1rem">
+        <div class="excursion pick card">
+          <h4>ZipRider — World's Largest Zipline <span class="tag tag-top">Top Pick</span> <span class="tag tag-kids">Kids Love It</span></h4>
+          <p>5,330 feet, 1,300 ft drop, 60 mph top speed. Gondola ride through rainforest. Min height 48" — both kids qualify!</p>
+          <p class="duration">⏱ 2 hours | <span class="price">~$99-129/person</span></p>
+        </div>
+        <div class="excursion card">
+          <h4>Alaska Salmon Hatchery <span class="tag tag-kids">Family</span></h4>
+          <p>See thousands of salmon, learn about conservation. Pairs perfectly with the ZipRider.</p>
+          <p class="duration">⏱ 1.5 hours | <span class="price">~$45-65/person</span></p>
+        </div>
+        <div class="excursion card">
+          <h4>Tide Pool & Rainforest Walk <span class="tag tag-value">Value</span></h4>
+          <p>Guided nature walk through tidal pools and old-growth forest. Great wildlife spotting.</p>
+          <p class="duration">⏱ 2 hours | <span class="price">~$55-75/person</span></p>
+        </div>
+        <div class="excursion card">
+          <h4>ATV Rainforest Adventure <span class="tag tag-adventure">Adventure</span></h4>
+          <p>Side-by-side ATV tour through Tongass Rainforest. Thrilling and fun for the whole family.</p>
+          <p class="duration">⏱ 3 hours | <span class="price">~$189-229/person</span></p>
+        </div>
+        <div class="excursion card">
+          <h4>Self-Guided Adventure Center <span class="tag tag-value">Free!</span></h4>
+          <p>Climb tower, ropes course, rainforest trail. At your own pace. Included in port fee.</p>
+          <p class="duration">⏱ 2-3 hours | <span class="price">Free</span></p>
+        </div>
+      </div>
+      <p style="margin-top:0.7rem;font-weight:600;color:var(--accent3)">💡 Recommended combo: ZipRider + Salmon Hatchery (~3.5 hours, ~$160/person)</p>
+    </div>
+
+    <!-- Juneau -->
+    <div class="card" style="border-left:3px solid var(--accent)">
+      <h3>🐋 Juneau — July 1</h3>
+      <div class="grid-2" style="margin-top:1rem">
+        <div class="excursion pick card">
+          <h4>Whale Watching + Mendenhall Glacier <span class="tag tag-top">Top Pick</span></h4>
+          <p>3-hour boat whale watching + 2 hours at the glacier. Two iconic Alaska experiences in one tour. Can't miss this one.</p>
+          <p class="duration">⏱ 5-6 hours | <span class="price">~$179-229/person</span></p>
+        </div>
+        <div class="excursion card">
+          <h4>Mendenhall Glacier & Dog Sledding <span class="tag tag-kids">Kids Love It</span></h4>
+          <p>Meet actual sled dogs, learn about mushing, walk the glacier. The dogs are the real highlight.</p>
+          <p class="duration">⏱ 3-4 hours | <span class="price">~$149-189/person</span></p>
+        </div>
+        <div class="excursion card">
+          <h4>Mt. Roberts Tramway + Glacier <span class="tag tag-value">Easy Day</span></h4>
+          <p>Scenic tramway ride to city overlook, then shuttle to Mendenhall Glacier. Easy accessibility.</p>
+          <p class="duration">⏱ 3-4 hours | <span class="price">~$89-129/person</span></p>
+        </div>
+        <div class="excursion card">
+          <h4>Penguin Colony + Whitewater Rafting <span class="tag tag-adventure">Adventure</span></h4>
+          <p>Visit aquarium to see Adelie penguins, then raft the Chilkat River. Unique combo!</p>
+          <p class="duration">⏱ 5-6 hours | <span class="price">~$189-229/person</span></p>
+        </div>
+      </div>
+      <p style="margin-top:0.7rem;font-weight:600;color:var(--accent)">💡 Recommended: Whale Watching + Mendenhall Glacier (the classic Alaska combo)</p>
+    </div>
+
+    <!-- Ketchikan -->
+    <div class="card" style="border-left:3px solid var(--accent2)">
+      <h3>🏛️ Ketchikan — July 2</h3>
+      <div class="grid-2" style="margin-top:1rem">
+        <div class="excursion pick card">
+          <h4>Rainforest Walk + Totem Bight <span class="tag tag-top">Top Pick</span> <span class="tag tag-culture">Culture</span></h4>
+          <p>Guided Tongass rainforest trail, then visit historic totem poles. Authentic Native culture experience.</p>
+          <p class="duration">⏱ 2-3 hours | <span class="price">~$59-89/person</span></p>
+        </div>
+        <div class="excursion card">
+          <h4>Salmon Fishing + Hatchery <span class="tag tag-kids">Hands-On</span></h4>
+          <p>Cast a line for salmon, then visit the creek hatchery. Great family activity.</p>
+          <p class="duration">⏱ 3-4 hours | <span class="price">~$129-159/person</span></p>
+        </div>
+        <div class="excursion card">
+          <h4>Saxman Native Village + Creek Street <span class="tag tag-culture">Culture</span></h4>
+          <p>Guided tour of historic totem village, then explore the famous boardwalk.</p>
+          <p class="duration">⏱ 2-3 hours | <span class="price">~$69-99/person</span></p>
+        </div>
+        <div class="excursion card">
+          <h4>Bear Viewing Cruise <span class="tag tag-adventure">Wildlife</span></h4>
+          <p>Boat tour to view coastal brown bears in their natural habitat. Spectacular scenery.</p>
+          <p class="duration">⏱ 3-4 hours | <span class="price">~$149-189/person</span></p>
+        </div>
+        <div class="excursion card">
+          <h4>Heron Island Cruise + Salmon Bake <span class="tag tag-value">All-Inclusive</span></h4>
+          <p>Scenic cruise to Heron Island, salmon bake lunch at lodge. Classic Alaskan experience.</p>
+          <p class="duration">⏱ 5-6 hours | <span class="price">~$149-179/person</span></p>
+        </div>
+      </div>
+      <p style="margin-top:0.7rem;font-weight:600;color:var(--accent2)">💡 Recommended: Rainforest + Totem Bight (best value and cultural experience)</p>
+    </div>
+
+    <div class="card" style="margin-top:1.5rem">
+      <h3>💵 Excursion Budget Estimate</h3>
+      <div class="grid-3">
+        <div><p style="color:var(--muted);font-size:0.8rem">Icy Strait (ZipRider + Hatchery)</p><strong>~$160 × 4 = $640</strong></div>
+        <div><p style="color:var(--muted);font-size:0.8rem">Juneau (Whale + Glacier)</p><strong>~$200 × 4 = $800</strong></div>
+        <div><p style="color:var(--muted);font-size:0.8rem">Ketchikan (Rainforest + Totems)</p><strong>~$75 × 4 = $300</strong></div>
+        <div style="grid-column:span 3;text-align:right;padding-top:0.5rem;border-top:1px solid var(--border)"><p style="color:var(--muted);font-size:0.8rem">Estimated Total</p><strong style="color:var(--accent);font-size:1.3rem">~$1,740 for the family</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PACKING -->
+  <div class="tab-content" id="tab-packing">
+    <h2 class="section-title">Packing Checklist</h2>
+    <p style="color:var(--muted);margin-bottom:1.5rem">Click items to check them off. Progress saves automatically.</p>
+
+    <div class="grid-2">
+      <div>
+        <div class="pack-cat">
+          <h4>🧥 Outer Layers</h4>
+          <ul class="checklist" data-group="outer">
+            <li>Waterproof/windproof jacket (3-in-1 ideal)</li>
+            <li>Waterproof pants (1 per person)</li>
+            <li>Lightweight puffy/down jacket</li>
+          </ul>
+        </div>
+        <div class="pack-cat">
+          <h4>👕 Mid Layers & Tops</h4>
+          <ul class="checklist" data-group="tops">
+            <li>Long-sleeve moisture-wicking shirts (3-4 per adult)</li>
+            <li>Short-sleeve shirts (2-3 per adult)</li>
+            <li>Fleece jackets or pullovers (1-2 per person)</li>
+            <li>Thermal/long underwear (2 sets for Denali)</li>
+            <li>Kids base layer sets + regular shirts</li>
+            <li>Nice dinner shirts (2-3 per adult)</li>
+          </ul>
+        </div>
+        <div class="pack-cat">
+          <h4>👖 Bottoms</h4>
+          <ul class="checklist" data-group="bottoms">
+            <li>Quick-dry/hiking pants (2-3 per adult)</li>
+            <li>Comfortable jeans/chinos (1 pair per adult)</li>
+            <li>Shorts (1-2 per person)</li>
+            <li>Kids: hiking pants, jeans, shorts, warm pants</li>
+            <li>Sleep pants (2 sets)</li>
+          </ul>
+        </div>
+        <div class="pack-cat">
+          <h4>👟 Footwear</h4>
+          <ul class="checklist" data-group="shoes">
+            <li>Hiking boots/waterproof shoes (broken in!)</li>
+            <li>Comfortable walking sneakers</li>
+            <li>Dressier shoes for dinner</li>
+            <li>Flip-flops/sandals</li>
+            <li>Kids hiking shoes + sneakers + sandals</li>
+            <li>Wool/moisture-wicking socks (7-10 pairs each)</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="pack-cat">
+          <h4>🎒 Gear & Equipment</h4>
+          <ul class="checklist" data-group="gear">
+            <li>Binoculars (critical for wildlife!)</li>
+            <li>Camera + extra memory cards + battery</li>
+            <li>Phone chargers + portable power bank</li>
+            <li>Waterproof dry bag (glacier spray protection)</li>
+            <li>Reusable water bottle (insulated)</li>
+            <li>Backpack/daypack (for excursions)</li>
+            <li>E-readers/tablets for kids (flights)</li>
+            <li>Headphones/earbuds (each person)</li>
+          </ul>
+        </div>
+        <div class="pack-cat">
+          <h4>☀️ Health & Sun</h4>
+          <ul class="checklist" data-group="health">
+            <li>Sunscreen SPF 50+</li>
+            <li>Lip balm with SPF</li>
+            <li>Insect repellent (BUG SPRAY for Denali!)</li>
+            <li>Kids bug spray</li>
+            <li>Motion sickness medication</li>
+            <li>Personal medications (full supply + extras)</li>
+            <li>Small first-aid kit</li>
+            <li>Pain relievers, allergy meds</li>
+            <li>Hand sanitizer</li>
+          </ul>
+        </div>
+        <div class="pack-cat">
+          <h4>🧢 Accessories</h4>
+          <ul class="checklist" data-group="accessories">
+            <li>Warm hat/beanie (each person)</li>
+            <li>Gloves (lightweight, waterproof)</li>
+            <li>Buff/neck gaiter</li>
+            <li>Sunglasses (polarized ideal)</li>
+            <li>Wide-brim sun hat</li>
+            <li>Swimwear (2 sets per person)</li>
+          </ul>
+        </div>
+        <div class="pack-cat">
+          <h4>📋 Documents</h4>
+          <ul class="checklist" data-group="docs">
+            <li>Passports (all 4 — VALID!)</li>
+            <li>Cruise tickets (digital OK)</li>
+            <li>Flight confirmations (BKXWYE)</li>
+            <li>Cruise reservation (DM6D8R)</li>
+            <li>Travel insurance info</li>
+            <li>Credit cards + some cash</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:1.5rem;background:rgba(245,158,11,0.08);border-color:rgba(245,158,11,0.2)">
+      <h3>⚠️ Critical Reminders</h3>
+      <ul>
+        <li><strong>BUG SPRAY</strong> — Denali mosquitoes in June are serious. Treat pants with permethrin before leaving if possible.</li>
+        <li><strong>Break in hiking boots</strong> — don't wear new boots for the first time in Denali.</li>
+        <li><strong>NO cotton</strong> for base layers. Merino wool or synthetic only. Cotton stays wet and gets cold.</li>
+        <li><strong>Use packing cubes</strong> — cabin B525 is a Mini-Suite (decent space) but not huge.</li>
+        <li><strong>Label all bags</strong> with names and contact info.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- DOCUMENTS -->
+  <div class="tab-content" id="tab-docs">
+    <h2 class="section-title">Documents & Confirmations</h2>
+    <div class="grid-2">
+      <div class="card">
+        <h3>🚢 Cruise</h3>
+        <ul>
+          <li><strong>Reservation:</strong> DM6D8R</li>
+          <li><strong>Cruise Number:</strong> 1251779</li>
+          <li><strong>Booked via:</strong> Amex Travel</li>
+          <li><strong>Ship:</strong> Discovery Princess</li>
+          <li><strong>Cabin:</strong> B525 (Mini-Suite, Baja Deck)</li>
+          <li><strong>Dining:</strong> Anytime Dining</li>
+          <li><strong>Insurance:</strong> Included ($915.94)</li>
+          <li><strong>Guest email:</strong> dustinpitcher@gmail.com</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>✈️ Flights</h3>
+        <ul>
+          <li><strong>Amex Conf:</strong> 7469-3408</li>
+          <li><strong>United Conf:</strong> BKXWYE</li>
+          <li><strong>Outbound:</strong> June 23, BFL→ANC via SFO</li>
+          <li><strong>Return:</strong> July 5, YVR→BFL via SFO</li>
+          <li><strong>All seats:</strong> Rows A-D confirmed</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>🏨 Hotels (Land Tour)</h3>
+        <ul>
+          <li><strong>June 23-24:</strong> Hotel Captain Cook, Anchorage</li>
+          <li><strong>June 24-27:</strong> Denali Princess Wilderness Lodge</li>
+          <li><strong>July 4:</strong> TBD — Hotel near YVR Airport</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>📋 Important Links</h3>
+        <ul>
+          <li><a href="https://www.princess.com" style="color:var(--accent)">Princess Cruises</a> — Manage booking</li>
+          <li><a href="https://www.united.com" style="color:var(--accent)">United Airlines</a> — Check-in, seats</li>
+          <li><a href="https://www.amex.com" style="color:var(--accent)">Amex Travel</a> — Booking details</li>
+          <li><a href="https://www.denali.gov" style="color:var(--accent)">Denali National Park</a> — Park info</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:1rem">
+      <h3>📞 Emergency Contacts</h3>
+      <div class="grid-3">
+        <div><p style="color:var(--muted);font-size:0.8rem">Princess Cruises</p><strong>1-800-774-1177</strong></div>
+        <div><p style="color:var(--muted);font-size:0.8rem">United Airlines</p><strong>1-800-864-8331</strong></div>
+        <div><p style="color:var(--muted);font-size:0.8rem">Amex Travel</p><strong>1-800-294-4997</strong></div>
+        <div><p style="color:var(--muted);font-size:0.8rem">Denali Lodge</p><strong>1-907-683-9151</strong></div>
+        <div><p style="color:var(--muted);font-size:0.8rem">Travel Insurance</p><strong>Check Amex policy</strong></div>
+        <div><p style="color:var(--muted);font-size:0.8rem">US Embassy Vancouver</p><strong>1-604-688-5400</strong></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Tab navigation
+  function showTab(name) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.add('active');
+    event.target.classList.add('active');
+    window.scrollTo(0, 0);
+  }
+
+  // Checklist persistence
+  document.querySelectorAll('.checklist').forEach(list => {
+    const groupId = list.dataset.group;
+    const items = list.querySelectorAll('li');
+    
+    // Load saved state
+    const saved = JSON.parse(localStorage.getItem('alaska-packing-' + groupId) || '[]');
+    items.forEach((item, i) => {
+      if (saved[i]) item.classList.add('checked');
+      item.addEventListener('click', () => {
+        item.classList.toggle('checked');
+        const states = Array.from(items).map(li => li.classList.contains('checked'));
+        localStorage.setItem('alaska-packing-' + groupId, JSON.stringify(states));
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
