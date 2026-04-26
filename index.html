@@ -3,10 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pitcher Family Alaska Cruise 2026</title>
+<title>Pitcher Family Alaska 2026</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="googlebot" content="noindex, nofollow">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap');
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
   :root {
     --bg: #0a1628; --card: #111d33; --card-hover: #162340;
@@ -15,16 +16,37 @@
     --success: #10b981; --warm: #f97316;
   }
   body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
-  
+
+  /* Password overlay */
+  #lock {
+    position: fixed; inset: 0; z-index: 9999; background: var(--bg);
+    display: flex; align-items: center; justify-content: center;
+  }
+  #lock .box {
+    text-align: center; padding: 2rem; background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; max-width: 360px; width: 90%;
+  }
+  #lock .box h2 { margin-bottom: 0.5rem; }
+  #lock .box p { color: var(--muted); font-size: 0.9rem; margin-bottom: 1rem; }
+  #lock input {
+    width: 100%; padding: 0.7rem 1rem; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--text); font-size: 1rem; font-family: inherit;
+    outline: none;
+  }
+  #lock input:focus { border-color: var(--accent); }
+  #lock button {
+    margin-top: 0.7rem; width: 100%; padding: 0.7rem; border: none; border-radius: 8px;
+    background: var(--accent); color: white; font-size: 1rem; font-weight: 600; cursor: pointer;
+    font-family: inherit;
+  }
+  #lock button:hover { background: #2563eb; }
+  #lock .err { color: #ef4444; font-size: 0.8rem; margin-top: 0.5rem; display: none; }
+
   /* Hero */
   .hero {
     background: linear-gradient(135deg, #0c1929 0%, #1a365d 50%, #0c1929 100%);
     padding: 3rem 2rem; text-align: center; position: relative; overflow: hidden;
     border-bottom: 1px solid var(--border);
-  }
-  .hero::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%233b82f6' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   }
   .hero h1 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 0.5rem; position: relative; }
   .hero h1 span { background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
@@ -43,8 +65,8 @@
 
   /* Main content */
   .main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
-  .tab-content { display: none; }
-  .tab-content.active { display: block; animation: fadeIn 0.3s; }
+  .tab { display: none; }
+  .tab.active { display: block; animation: fadeIn 0.3s; }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
   /* Cards */
@@ -54,7 +76,7 @@
   .card p, .card li { color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
   .card ul { list-style: none; padding: 0; }
   .card li { padding: 0.3rem 0; }
-  .card li::before { content: '›'; color: var(--accent); margin-right: 0.5rem; font-weight: 700; }
+  .card li::before { content: '\u203A'; color: var(--accent); margin-right: 0.5rem; font-weight: 700; }
 
   /* Tags */
   .tag { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 999px; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
@@ -72,7 +94,6 @@
     content: ''; position: absolute; left: -1.55rem; top: 6px; width: 12px; height: 12px;
     border-radius: 50%; background: var(--accent); border: 2px solid var(--bg);
   }
-  .timeline-item.completed::before { background: var(--success); }
   .timeline-date { font-size: 0.75rem; color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
   .timeline-title { font-weight: 600; margin: 0.2rem 0; }
   .timeline-desc { color: var(--muted); font-size: 0.85rem; }
@@ -95,8 +116,8 @@
   /* Checklist */
   .checklist { list-style: none; padding: 0; }
   .checklist li { padding: 0.5rem 0; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 0.7rem; font-size: 0.9rem; cursor: pointer; }
-  .checklist li::before { content: '☐'; color: var(--accent); font-size: 1.1rem; }
-  .checklist li.checked::before { content: '☑'; color: var(--success); }
+  .checklist li::before { content: '\2610'; color: var(--accent); font-size: 1.1rem; }
+  .checklist li.checked::before { content: '\2611'; color: var(--success); }
   .checklist li.checked { color: var(--muted); text-decoration: line-through; }
 
   /* Packing category */
@@ -112,26 +133,36 @@
   .flight-segment .route { flex: 1; }
   .flight-segment .route .cities { font-weight: 600; }
   .flight-segment .route .detail { color: var(--muted); font-size: 0.8rem; }
-  .flight-arrow { color: var(--accent); font-size: 1.2rem; }
 
-  /* Responsive */
   @media (max-width: 768px) {
     .hero h1 { font-size: 1.8rem; }
     .nav { padding: 0.7rem 1rem; }
     .main { padding: 1rem; }
     .grid-2, .grid-3 { grid-template-columns: 1fr; }
   }
-
-  /* Print styles */
   @media print {
     .nav { display: none; }
-    .tab-content { display: block !important; page-break-inside: avoid; }
+    .tab { display: block !important; page-break-inside: avoid; }
     body { background: white; color: black; }
     .card { border: 1px solid #ddd; }
   }
 </style>
 </head>
 <body>
+
+<!-- PASSWORD GATE -->
+<div id="lock">
+  <div class="box">
+    <h2>🔒 Family Access Only</h2>
+    <p>Enter the password to view our Alaska cruise plans.</p>
+    <input type="password" id="pw" placeholder="Password" autofocus>
+    <button id="unlock">Unlock</button>
+    <p class="err" id="err">Wrong password. Try again.</p>
+  </div>
+</div>
+
+<!-- APP (hidden until unlocked) -->
+<div id="app" style="display:none">
 
 <div class="hero">
   <h1>🏔️ <span>Alaska Cruise Adventure</span> 2026</h1>
@@ -140,18 +171,18 @@
 </div>
 
 <nav class="nav" id="nav">
-  <button class="active" onclick="showTab('overview', this)">Overview</button>
-  <button onclick="showTab('itinerary', this)">Day-by-Day</button>
-  <button onclick="showTab('flights', this)">Flights</button>
-  <button onclick="showTab('excursions', this)">Excursions</button>
-  <button onclick="showTab('packing', this)">Packing</button>
-  <button onclick="showTab('docs', this)">Documents</button>
+  <button class="active" data-tab="overview">Overview</button>
+  <button data-tab="itinerary">Day-by-Day</button>
+  <button data-tab="flights">Flights</button>
+  <button data-tab="excursions">Excursions</button>
+  <button data-tab="packing">Packing</button>
+  <button data-tab="docs">Documents</button>
 </nav>
 
 <div class="main">
 
   <!-- OVERVIEW -->
-  <div class="tab-content active" id="tab-overview">
+  <div class="tab active" id="tab-overview">
     <h2 class="section-title">Trip Overview</h2>
     <div class="grid-3">
       <div class="card stat"><div class="number">11</div><div class="label">Nights</div></div>
@@ -159,7 +190,7 @@
       <div class="card stat"><div class="number">5</div><div class="label">Destinations</div></div>
       <div class="card stat"><div class="number">B525</div><div class="label">Mini-Suite</div></div>
       <div class="card stat"><div class="number">3</div><div class="label">Port Days</div></div>
-      <div class="card stat"><div class="number">$0</div><div class="label">Pre-Paid</div></div>
+      <div class="card stat"><div class="number">100%</div><div class="label">Pre-Paid</div></div>
     </div>
 
     <div class="grid-2" style="margin-top:1.5rem">
@@ -183,15 +214,12 @@
           <li><strong>Dharma Pitcher</strong> (Age 12)</li>
           <li><strong>Jameson Pitcher</strong> (Age 10)</li>
         </ul>
-        <p style="margin-top:0.7rem; font-size:0.85rem;">All guest details, citizenship, and contact info confirmed with Princess via Amex.</p>
       </div>
     </div>
-
-
   </div>
 
   <!-- ITINERARY -->
-  <div class="tab-content" id="tab-itinerary">
+  <div class="tab" id="tab-itinerary">
     <h2 class="section-title">Day-by-Day Itinerary</h2>
     <div class="grid-2">
       <div>
@@ -273,14 +301,13 @@
   </div>
 
   <!-- FLIGHTS -->
-  <div class="tab-content" id="tab-flights">
+  <div class="tab" id="tab-flights">
     <h2 class="section-title">Flight Details</h2>
     <div class="grid-2">
       <div class="card">
         <h3>✈️ Outbound — June 23, 2026</h3>
         <p style="margin-bottom:0.5rem"><strong>BFL → ANC</strong> via SFO | United Airlines</p>
         <p style="color:var(--muted);font-size:0.8rem;margin-bottom:1rem">Amex Conf: 7469-3408 | United Conf: BKXWYE</p>
-        
         <div class="flight-segment">
           <div class="code">UA<br>5625</div>
           <div class="route">
@@ -303,7 +330,6 @@
         <h3>✈️ Return — July 5, 2026</h3>
         <p style="margin-bottom:0.5rem"><strong>YVR → BFL</strong> via SFO | United Airlines</p>
         <p style="color:var(--muted);font-size:0.8rem;margin-bottom:1rem">Early morning — be at YVR by 5:30 AM</p>
-        
         <div class="flight-segment">
           <div class="code">UA<br>2322</div>
           <div class="route">
@@ -335,11 +361,10 @@
   </div>
 
   <!-- EXCURSIONS -->
-  <div class="tab-content" id="tab-excursions">
+  <div class="tab" id="tab-excursions">
     <h2 class="section-title">Shore Excursion Options</h2>
-    <p style="color:var(--muted);margin-bottom:1.5rem">Pick one per port day. Family favorites are tagged. Prices are estimated per person through Princess.</p>
+    <p style="color:var(--muted);margin-bottom:1.5rem">Pick one per port day. Family favorites are tagged.</p>
 
-    <!-- Icy Strait Point -->
     <div class="card" style="border-left:3px solid var(--accent3)">
       <h3>🎢 Icy Strait Point — June 30</h3>
       <div class="grid-2" style="margin-top:1rem">
@@ -369,11 +394,10 @@
           <p class="duration">⏱ 2-3 hours | <span class="price">Free</span></p>
         </div>
       </div>
-      <p style="margin-top:0.7rem;font-weight:600;color:var(--accent3)">💡 Recommended combo: ZipRider + Salmon Hatchery (~3.5 hours, ~$160/person)</p>
+      <p style="margin-top:0.7rem;font-weight:600;color:var(--accent3)">💡 Recommended combo: ZipRider + Salmon Hatchery (~3.5 hours)</p>
     </div>
 
-    <!-- Juneau -->
-    <div class="card" style="border-left:3px solid var(--accent)">
+    <div class="card" style="border-left:3px solid var(--accent);margin-top:1rem">
       <h3>🐋 Juneau — July 1</h3>
       <div class="grid-2" style="margin-top:1rem">
         <div class="excursion pick card">
@@ -400,8 +424,7 @@
       <p style="margin-top:0.7rem;font-weight:600;color:var(--accent)">💡 Recommended: Whale Watching + Mendenhall Glacier (the classic Alaska combo)</p>
     </div>
 
-    <!-- Ketchikan -->
-    <div class="card" style="border-left:3px solid var(--accent2)">
+    <div class="card" style="border-left:3px solid var(--accent2);margin-top:1rem">
       <h3>🏛️ Ketchikan — July 2</h3>
       <div class="grid-2" style="margin-top:1rem">
         <div class="excursion pick card">
@@ -424,28 +447,13 @@
           <p>Boat tour to view coastal brown bears in their natural habitat. Spectacular scenery.</p>
           <p class="duration">⏱ 3-4 hours | <span class="price">~$149-189/person</span></p>
         </div>
-        <div class="excursion card">
-          <h4>Heron Island Cruise + Salmon Bake <span class="tag tag-value">All-Inclusive</span></h4>
-          <p>Scenic cruise to Heron Island, salmon bake lunch at lodge. Classic Alaskan experience.</p>
-          <p class="duration">⏱ 5-6 hours | <span class="price">~$149-179/person</span></p>
-        </div>
       </div>
       <p style="margin-top:0.7rem;font-weight:600;color:var(--accent2)">💡 Recommended: Rainforest + Totem Bight (best value and cultural experience)</p>
-    </div>
-
-    <div class="card" style="margin-top:1.5rem">
-      <h3>💵 Excursion Budget Estimate</h3>
-      <div class="grid-3">
-        <div><p style="color:var(--muted);font-size:0.8rem">Icy Strait (ZipRider + Hatchery)</p><strong>~$160 × 4 = $640</strong></div>
-        <div><p style="color:var(--muted);font-size:0.8rem">Juneau (Whale + Glacier)</p><strong>~$200 × 4 = $800</strong></div>
-        <div><p style="color:var(--muted);font-size:0.8rem">Ketchikan (Rainforest + Totems)</p><strong>~$75 × 4 = $300</strong></div>
-        <div style="grid-column:span 3;text-align:right;padding-top:0.5rem;border-top:1px solid var(--border)"><p style="color:var(--muted);font-size:0.8rem">Estimated Total</p><strong style="color:var(--accent);font-size:1.3rem">~$1,740 for the family</strong></p>
-      </div>
     </div>
   </div>
 
   <!-- PACKING -->
-  <div class="tab-content" id="tab-packing">
+  <div class="tab" id="tab-packing">
     <h2 class="section-title">Packing Checklist</h2>
     <p style="color:var(--muted);margin-bottom:1.5rem">Click items to check them off. Progress saves automatically.</p>
 
@@ -533,7 +541,7 @@
         </div>
         <div class="pack-cat">
           <h4>📋 Documents</h4>
-          <ul class="checklist" data-group="docs">
+          <ul class="checklist" data-group="docs2">
             <li>Passports (all 4 — VALID!)</li>
             <li>Cruise tickets (digital OK)</li>
             <li>Flight confirmations (BKXWYE)</li>
@@ -558,7 +566,7 @@
   </div>
 
   <!-- DOCUMENTS -->
-  <div class="tab-content" id="tab-docs">
+  <div class="tab" id="tab-docs">
     <h2 class="section-title">Documents & Confirmations</h2>
     <div class="grid-2">
       <div class="card">
@@ -570,7 +578,6 @@
           <li><strong>Ship:</strong> Discovery Princess</li>
           <li><strong>Cabin:</strong> B525 (Mini-Suite, Baja Deck)</li>
           <li><strong>Dining:</strong> Anytime Dining</li>
-          <li><strong>Insurance:</strong> Included ($915.94)</li>
           <li><strong>Guest email:</strong> dustinpitcher@gmail.com</li>
         </ul>
       </div>
@@ -593,57 +600,89 @@
         </ul>
       </div>
       <div class="card">
-        <h3>📋 Important Links</h3>
+        <h3>📞 Emergency Contacts</h3>
         <ul>
-          <li><a href="https://www.princess.com" style="color:var(--accent)">Princess Cruises</a> — Manage booking</li>
-          <li><a href="https://www.united.com" style="color:var(--accent)">United Airlines</a> — Check-in, seats</li>
-          <li><a href="https://www.amex.com" style="color:var(--accent)">Amex Travel</a> — Booking details</li>
-          <li><a href="https://www.denali.gov" style="color:var(--accent)">Denali National Park</a> — Park info</li>
+          <li><strong>Princess Cruises:</strong> 1-800-774-1177</li>
+          <li><strong>United Airlines:</strong> 1-800-864-8331</li>
+          <li><strong>Amex Travel:</strong> 1-800-294-4997</li>
+          <li><strong>Denali Lodge:</strong> 1-907-683-9151</li>
+          <li><strong>Travel Insurance:</strong> Check Amex policy</li>
+          <li><strong>US Embassy Vancouver:</strong> 1-604-688-5400</li>
         </ul>
-      </div>
-    </div>
-
-    <div class="card" style="margin-top:1rem">
-      <h3>📞 Emergency Contacts</h3>
-      <div class="grid-3">
-        <div><p style="color:var(--muted);font-size:0.8rem">Princess Cruises</p><strong>1-800-774-1177</strong></div>
-        <div><p style="color:var(--muted);font-size:0.8rem">United Airlines</p><strong>1-800-864-8331</strong></div>
-        <div><p style="color:var(--muted);font-size:0.8rem">Amex Travel</p><strong>1-800-294-4997</strong></div>
-        <div><p style="color:var(--muted);font-size:0.8rem">Denali Lodge</p><strong>1-907-683-9151</strong></div>
-        <div><p style="color:var(--muted);font-size:0.8rem">Travel Insurance</p><strong>Check Amex policy</strong></div>
-        <div><p style="color:var(--muted);font-size:0.8rem">US Embassy Vancouver</p><strong>1-604-688-5400</strong></div>
       </div>
     </div>
   </div>
 
 </div>
+</div>
 
 <script>
-  // Tab navigation
-  function showTab(name, btn) {
-    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active'));
-    document.getElementById('tab-' + name).classList.add('active');
-    btn.classList.add('active');
-    window.scrollTo(0, 0);
-  }
+  // Password gate
+  (function() {
+    var hashed = localStorage.getItem('alaska_unlocked');
+    if (hashed === '1') {
+      document.getElementById('lock').style.display = 'none';
+      document.getElementById('app').style.display = 'block';
+      return;
+    }
 
-  // Checklist persistence
-  document.querySelectorAll('.checklist').forEach(list => {
-    const groupId = list.dataset.group;
-    const items = list.querySelectorAll('li');
-    
-    // Load saved state
-    const saved = JSON.parse(localStorage.getItem('alaska-packing-' + groupId) || '[]');
-    items.forEach((item, i) => {
-      if (saved[i]) item.classList.add('checked');
-      item.addEventListener('click', () => {
-        item.classList.toggle('checked');
-        const states = Array.from(items).map(li => li.classList.contains('checked'));
-        localStorage.setItem('alaska-packing-' + groupId, JSON.stringify(states));
+    var pw = document.getElementById('pw');
+    var err = document.getElementById('err');
+    var attempt = 0;
+
+    function check() {
+      if (pw.value === 'benji') {
+        localStorage.setItem('alaska_unlocked', '1');
+        document.getElementById('lock').style.display = 'none';
+        document.getElementById('app').style.display = 'block';
+        return;
+      }
+      attempt++;
+      err.style.display = 'block';
+      if (attempt >= 3) {
+        err.textContent = 'Too many attempts. Refresh and try again.';
+        pw.disabled = true;
+        document.getElementById('unlock').disabled = true;
+      }
+    }
+
+    document.getElementById('unlock').addEventListener('click', check);
+    pw.addEventListener('keydown', function(e) { if (e.key === 'Enter') check(); });
+  })();
+
+  // Tab navigation — uses data-tab attribute, no inline onclick
+  (function() {
+    var tabs = document.querySelectorAll('.nav button');
+    var panels = document.querySelectorAll('.tab');
+    tabs.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var id = btn.getAttribute('data-tab');
+        tabs.forEach(function(b) { b.classList.remove('active'); });
+        panels.forEach(function(p) { p.classList.remove('active'); });
+        btn.classList.add('active');
+        document.getElementById('tab-' + id).classList.add('active');
+        window.scrollTo(0, 0);
       });
     });
-  });
+  })();
+
+  // Checklist persistence
+  (function() {
+    document.querySelectorAll('.checklist').forEach(function(list) {
+      var groupId = list.dataset.group;
+      var items = list.querySelectorAll('li');
+      var saved = JSON.parse(localStorage.getItem('alaska-pack-' + groupId) || '[]');
+      items.forEach(function(item, i) {
+        if (saved[i]) item.classList.add('checked');
+        item.addEventListener('click', function() {
+          item.classList.toggle('checked');
+          var states = [];
+          items.forEach(function(li) { states.push(li.classList.contains('checked')); });
+          localStorage.setItem('alaska-pack-' + groupId, JSON.stringify(states));
+        });
+      });
+    });
+  })();
 </script>
 
 </body>
