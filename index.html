@@ -3,11 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0a1628">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Alaska Trip">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
 <title>Pitcher Family Alaska 2026</title>
 <meta name="robots" content="noindex, nofollow">
 <meta name="googlebot" content="noindex, nofollow">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap');
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
   :root {
     --bg: #0a1628; --card: #111d33; --card-hover: #162340;
@@ -76,7 +82,8 @@
   .card p, .card li { color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
   .card ul { list-style: none; padding: 0; }
   .card li { padding: 0.3rem 0; }
-  .card li::before { content: '\u203A'; color: var(--accent); margin-right: 0.5rem; font-weight: 700; }
+  .card > ul > li::before { content: '\u203A'; color: var(--accent); margin-right: 0.5rem; font-weight: 700; }
+  .checklist li::before { content: '\2610'; color: var(--accent); font-size: 1.1rem; }
 
   /* Tags */
   .tag { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 999px; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
@@ -681,6 +688,81 @@
           localStorage.setItem('alaska-pack-' + groupId, JSON.stringify(states));
         });
       });
+    });
+  })();
+</script>
+
+<!-- Install prompt overlay -->
+<div id="install-overlay" style="display:none; position:fixed; inset:0; z-index:9998; background:rgba(0,0,0,0.7); align-items:flex-end; justify-content:center; padding:2rem;">
+  <div style="background:var(--card); border:1px solid var(--border); border-radius:16px; padding:2rem; max-width:400px; width:100%; margin-bottom:2rem; text-align:center;">
+    <h3 style="font-size:1.2rem; margin-bottom:0.5rem;">📱 Save to Home Screen</h3>
+    <p style="color:var(--muted); font-size:0.9rem; margin-bottom:1.5rem;">Add this to your phone for quick access — even offline!</p>
+    
+    <div id="install-ios" style="display:none; text-align:left; margin-bottom:1rem;">
+      <p style="color:var(--muted); font-size:0.85rem; margin-bottom:0.5rem; font-weight:600;">iPhone / iPad:</p>
+      <ol style="color:var(--muted); font-size:0.85rem; padding-left:1.2rem; line-height:1.8;">
+        <li>Tap the <strong>Share</strong> button (square with arrow up)</li>
+        <li>Scroll down and tap <strong>"Add to Home Screen"</strong></li>
+        <li>Tap <strong>Add</strong> in the top right</li>
+      </ol>
+    </div>
+    
+    <div id="install-android" style="display:none; text-align:left; margin-bottom:1rem;">
+      <p style="color:var(--muted); font-size:0.85rem; margin-bottom:0.5rem; font-weight:600;">Android:</p>
+      <ol style="color:var(--muted); font-size:0.85rem; padding-left:1.2rem; line-height:1.8;">
+        <li>Tap the <strong>menu</strong> button (three dots) in the top right</li>
+        <li>Tap <strong>"Add to Home screen"</strong></li>
+        <li>Tap <strong>Add</strong></li>
+      </ol>
+    </div>
+    
+    <div id="install-desktop" style="display:none; text-align:left; margin-bottom:1rem;">
+      <p style="color:var(--muted); font-size:0.85rem; margin-bottom:0.5rem; font-weight:600;">Desktop (Chrome / Edge):</p>
+      <ol style="color:var(--muted); font-size:0.85rem; padding-left:1.2rem; line-height:1.8;">
+        <li>Look for the install icon in the address bar</li>
+        <li>Or use <strong>Cmd+Shift+P</strong> → "Install app"</li>
+      </ol>
+    </div>
+
+    <p style="color:var(--success); font-size:0.8rem; margin-bottom:1rem;">✅ Works offline once saved!</p>
+    
+    <button onclick="document.getElementById('install-overlay').style.display='none'" style="padding:0.6rem 2rem; border:none; border-radius:8px; background:var(--accent); color:white; font-size:0.9rem; font-weight:600; cursor:pointer; font-family:inherit;">Got It</button>
+  </div>
+</div>
+
+<script>
+  // Service worker registration
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js').catch(function(){});
+  }
+
+  // Detect platform for install instructions
+  (function() {
+    var ua = navigator.userAgent;
+    var isIOS = /iPad|iPhone|iPod/.test(ua);
+    var isAndroid = /Android/.test(ua);
+    
+    if (isIOS) {
+      document.getElementById('install-ios').style.display = 'block';
+    } else if (isAndroid) {
+      document.getElementById('install-android').style.display = 'block';
+    } else {
+      document.getElementById('install-desktop').style.display = 'block';
+    }
+  })();
+
+  // Show install prompt after unlock (once per session)
+  (function() {
+    var shown = sessionStorage.getItem('install-shown');
+    if (shown) return;
+    
+    var checkBtn = document.getElementById('unlock');
+    checkBtn.addEventListener('click', function showOnce() {
+      setTimeout(function() {
+        document.getElementById('install-overlay').style.display = 'flex';
+        sessionStorage.setItem('install-shown', '1');
+      }, 500);
+      checkBtn.removeEventListener('click', showOnce);
     });
   })();
 </script>
